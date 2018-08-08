@@ -26,6 +26,9 @@ describe('NewDateOfBirthAttribute', () => {
         wallet: {
           id: '123',
         },
+        featureToggles: {
+          'test': true,
+        }
       };
       const store = mockStore(initialState);
       const wrapper = shallow(
@@ -40,5 +43,28 @@ describe('NewDateOfBirthAttribute', () => {
       const lastAction = store.getActions()[store.getActions().length - 1];
       expect(lastAction).toEqual(expectedAction);
     });
+
+    it('should not have button if toggle is off', () => {
+      const initialState = {
+        navigation: {
+          currentNavigatorUID: 2,
+        },
+        wallet: {
+          id: '123',
+        },
+        featureToggles: {
+          'test': false,
+        }
+      };
+      const store = mockStore(initialState);
+      const wrapper = shallow(
+        <NewDateOfBirthAttribute />,
+        { context: { store } },
+      );
+
+      const saveDateOfBirth = wrapper.dive().find(Button);
+
+      expect(saveDateOfBirth.length).toEqual(0);
+    })
   });
 });

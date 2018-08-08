@@ -8,7 +8,7 @@ import { saveDateOfBirth } from '../application/redux/actions/attributes';
 
 const NewDateOfBirthAttribute = props => (
   <View style={styles.attributesManagementContainer}>
-    <Button name="addDateOfBirth" onPress={() => props.saveDateOfBirth(props.walletId)} />
+    { props.featureToggles['test'] && <Button name="addDateOfBirth" onPress={() => props.saveDateOfBirth(props.walletId)} /> }
   </View>
 );
 
@@ -19,6 +19,7 @@ NewDateOfBirthAttribute.propTypes = {
 
 const mapStateToProps = state => ({
   walletId: state.wallet.id,
+  featureToggles: state.featureToggles,
 });
 
 const mapDispatchToProps = dispatch => ({

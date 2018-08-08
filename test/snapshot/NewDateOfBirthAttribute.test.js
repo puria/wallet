@@ -14,6 +14,9 @@ const initialState = {
   wallet: {
     id: '123',
   },
+  featureToggles: {
+    'test': true,
+  }
 };
 
 it('renders NewDateOfBirthAttribute component', () => {
